@@ -4,10 +4,36 @@
     <meta charset="utf-8">
     <script src="main.js"></script>
     <link rel="stylesheet" href="main.css">
-    <title>EMAIL JS practice
-    </title>
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("user_u8Qhayu3SqsZiP9k15W3w");
+       })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                this.contact_number.value = Math.random() * 100000 | 0;
+                emailjs.sendForm('gmail', 'contact_form', this);
+            });
+        }
+    </script>
+    <title>EMAIL JS practice</title>
   </head>
   <body>
     <h1>EmailJS form</h1>
+    <div class="contactcontainer">
+      <form id="contact-form">
+          <input type="hidden" name="contact_number">
+          <!-- <label>Name</label>
+          <input type="text" name="user_name"> -->
+          <label>Email</label>
+          <input type="email" name="user_email">
+          <label>Message</label>
+          <textarea name="contact"></textarea>
+          <input type="submit" value="Send">
+      </form>
+  </div>
   </body>
 </html>
